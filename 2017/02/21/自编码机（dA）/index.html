@@ -10,20 +10,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="注意：
 
-本节假设读者已经阅读了Classifying MNIST digits using Logistic Regression和Multilayer Perceptron。另外它使用了如下的Theano函数和概念：T.tanh, shared variables, basic arithmetic ops, T.grad, Random numbers, floatX。如果你要在GPU上跑代">
+本节假设读者已经阅读了Classifying MNIST digits using Logistic Regression和Multilayer Perceptron。另外它使用了如下的Theano函数和概念： T.tanh , shared variables, basic arithmetic ops, T.grad, Random numbers, floatX。如果你要在GPU上">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自编码机（dA）">
 <meta property="og:url" content="http://yoursite.com/2017/02/21/自编码机（dA）/index.html">
 <meta property="og:site_name" content="NSEVC的博客">
 <meta property="og:description" content="注意：
 
-本节假设读者已经阅读了Classifying MNIST digits using Logistic Regression和Multilayer Perceptron。另外它使用了如下的Theano函数和概念：T.tanh, shared variables, basic arithmetic ops, T.grad, Random numbers, floatX。如果你要在GPU上跑代">
-<meta property="og:updated_time" content="2017-02-21T10:29:44.710Z">
+本节假设读者已经阅读了Classifying MNIST digits using Logistic Regression和Multilayer Perceptron。另外它使用了如下的Theano函数和概念： T.tanh , shared variables, basic arithmetic ops, T.grad, Random numbers, floatX。如果你要在GPU上">
+<meta property="og:updated_time" content="2017-02-21T13:46:56.993Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自编码机（dA）">
 <meta name="twitter:description" content="注意：
 
-本节假设读者已经阅读了Classifying MNIST digits using Logistic Regression和Multilayer Perceptron。另外它使用了如下的Theano函数和概念：T.tanh, shared variables, basic arithmetic ops, T.grad, Random numbers, floatX。如果你要在GPU上跑代">
+本节假设读者已经阅读了Classifying MNIST digits using Logistic Regression和Multilayer Perceptron。另外它使用了如下的Theano函数和概念： T.tanh , shared variables, basic arithmetic ops, T.grad, Random numbers, floatX。如果你要在GPU上">
   
     <link rel="alternative" href="/atom.xml" title="NSEVC的博客" type="application/atom+xml">
   
@@ -181,14 +181,18 @@
       
         <p><strong>注意：</strong></p>
 <blockquote>
-<p>本节假设读者已经阅读了Classifying MNIST digits using Logistic Regression和Multilayer Perceptron。另外它使用了如下的Theano函数和概念：T.tanh, shared variables, basic arithmetic ops, T.grad, Random numbers, floatX。如果你要在GPU上跑代码，那么也需要阅读GPU。</p>
+<p>本节假设读者已经阅读了Classifying MNIST digits using Logistic Regression和Multilayer Perceptron。另外它使用了如下的Theano函数和概念：<u> T.tanh </u>, shared variables, basic arithmetic ops, T.grad, Random numbers, floatX。如果你要在GPU上跑代码，那么也需要阅读GPU。</p>
 </blockquote>
 <p><strong>注意：</strong></p>
 <blockquote>
-<p>这一节的代码可以在这里下载。</p>
+<p>这一节的代码可以在<a href="http://deeplearning.net/tutorial/code/dA.py" target="_blank" rel="external">这里</a>下载。  </p>
 </blockquote>
 <p>降噪自编码机（dA）是经典的自编码机的一个扩展，并且在[Vincent08]中是以深度网络的组成成分来介绍的。</p>
-<h2 id="7-1-fgg"><a href="#7-1-fgg" class="headerlink" title="7.1 fgg"></a>7.1 fgg</h2><h2 id="7-2-ffg"><a href="#7-2-ffg" class="headerlink" title="7.2 ffg"></a>7.2 ffg</h2>
+<h2 id="7-1-自编码机"><a href="#7-1-自编码机" class="headerlink" title="7.1 自编码机"></a>7.1 自编码机</h2><p>关于自编码机，我们可以在【bengio09】的4.6节中有一个总的概览。自编码机将\(x\in[0,1]^d\)作为输入，并将输入映射（用一个编码机）到一个隐层的表征向量\(y\in[0,1]^{d’}\)，中间特定的映射法则可以是如下的方式：<br>$$y=s(Wx+b)$$  </p>
+<p>这里的s是一个非线性的函数，例如sigmoid函数。这个隐层的表征向量y或者称为密码，接下来再映射成z（用一个解码器，z也陈给是重构的x），这里的z与原来的输入x是有相同的shape的。这里的映射与之前的映射也有着相似的形式，如下：<br>$$z=s(W’y+b’)$$  </p>
+<p>（这里，W和b右上方的符号并不表示矩阵的转置）z应该看成是，在给定了密码y之后，对x的一个预测。当然，在逆映射中的权重矩阵\(w’\)可以被约束成\(W’= W^(T)\), \(W’\)为前一个映射中的权重矩阵的转置。这样被称为是tied weights。模型的参数（也就是W，b，b’, 当然如果不使用tied weights，还有W’）可以通过最小化平均重构误差来得到。<br>重构误差可以通过很多方式来衡量，取决于对给定了密码的输入的分布的合理假设（？？）。我们可以使用传统的均方误差\(L(xz)=||x-z||^2\) 。当然如果输入被处理成位向量（向量中的值均为0或1）或者概率位向量（向量中的值均为概率值），那么我们也可以用重构误差的交叉熵形式：<br>$$L<em>{H}=-\sum\</em>{k=1}^{d} [x_{k}log(z_{k}+(1-x_{k})log(1-z_{k})]$$  </p>
+<p>我们的希望是密码y，可以捕捉到数据集中主要因子变化的分布表示。这与在主成分上做投影的方式是十分相似的，会捕捉到数据中主要因子的变化。事实上，如果网络中，我们使用的是一个线性的隐藏层，并且我们将均方误差作为衡量损失的标准来训练这个网络，那么k个隐藏节点将学习反映数据中前k个主成分。如果隐藏层是非线性的，那么自编码机将于PCA表现不同，这样的网络将会学习捕获输入分布的多个方面。正是与PCA的不同，当我们考虑建立一个深度的自编码机的时候，考虑到堆叠多个编码机的时候，这样的不同将会变得非常重要【Hinton06】。<br>因为我们将y看做是x的有损压缩，所以对所有的x不可能都是一个好的压缩（有small-loss）。通过优化的方法，我们可以得到一个对训练样本而言较好的压缩，同时期望对其他的一些输入也是表现良好的，但是并不是对所有的输入都是表现良好的。自编码机概括起来就是：对于测试样本的分布与训练样本分布一样的测试集，自编码机得到一个较小的重构误差，但是对于在输入空间上随意选取的样本，往往有较高的重构误差。<br>我们用Theano框架来实现自编码机，以一个类的形式，这样子我们可以在构建堆叠自编码机的时候也能使用。首先第一步我们要为自编码机的参数W，b，b’,创建共享变量。（在本教程中，我们使用tied weights，也就是W^’=W^T）：</p>
+<h2 id="7-2-ffg"><a href="#7-2-ffg" class="headerlink" title="7.2 ffg"></a>7.2 ffg</h2>
       
 
       
