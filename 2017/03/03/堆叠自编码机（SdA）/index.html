@@ -6,14 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>NSEVC的博客</title>
+  <title>堆叠自编码机（SdA） | NSEVC的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="NSEVC的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="注意：
+
+本节假设读者已经阅读了Classifying MNIST digits using Logistic Regression和Multilayer Perceptron。另外它使用了如下的Theano函数和概念：T.tanh, shared variables, basic arithmetic ops, T.grad, Random numbers, floatX。如果你要在GPU上跑代">
+<meta property="og:type" content="article">
+<meta property="og:title" content="堆叠自编码机（SdA）">
+<meta property="og:url" content="http://yoursite.com/2017/03/03/堆叠自编码机（SdA）/index.html">
 <meta property="og:site_name" content="NSEVC的博客">
+<meta property="og:description" content="注意：
+
+本节假设读者已经阅读了Classifying MNIST digits using Logistic Regression和Multilayer Perceptron。另外它使用了如下的Theano函数和概念：T.tanh, shared variables, basic arithmetic ops, T.grad, Random numbers, floatX。如果你要在GPU上跑代">
+<meta property="og:updated_time" content="2017-03-03T05:21:09.332Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NSEVC的博客">
+<meta name="twitter:title" content="堆叠自编码机（SdA）">
+<meta name="twitter:description" content="注意：
+
+本节假设读者已经阅读了Classifying MNIST digits using Logistic Regression和Multilayer Perceptron。另外它使用了如下的Theano函数和概念：T.tanh, shared variables, basic arithmetic ops, T.grad, Random numbers, floatX。如果你要在GPU上跑代">
   
     <link rel="alternative" href="/atom.xml" title="NSEVC的博客" type="application/atom+xml">
   
@@ -149,16 +159,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-堆叠自编码机（SdA）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-堆叠自编码机（SdA）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/03/堆叠自编码机（SdA）/">堆叠自编码机（SdA）</a>
+    <h1 class="article-title" itemprop="name">
+      堆叠自编码机（SdA）
     </h1>
   
 
@@ -215,173 +223,36 @@
       
 
       
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/03/堆叠自编码机（SdA）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-自编码机（dA）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/21/自编码机（dA）/">去噪自编码机（dA）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/21/自编码机（dA）/" class="archive-article-date">
-  	<time datetime="2017-02-21T08:33:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>注意：</strong></p>
-<blockquote>
-<p>本节假设读者已经阅读了<a href="http://deeplearning.net/tutorial/logreg.html" target="_blank" rel="external">Classifying MNIST digits using Logistic Regression</a>和<a href="http://deeplearning.net/tutorial/mlp.html" target="_blank" rel="external">Multilayer Perceptron</a>。另外它使用了如下的Theano函数和概念：<a href="http://deeplearning.net/software/theano/tutorial/examples.html?highlight=tanh" target="_blank" rel="external">T.tanh</a>, <a href="http://deeplearning.net/software/theano/tutorial/examples.html#using-shared-variables" target="_blank" rel="external">shared variables</a>, <a href="http://deeplearning.net/software/theano/tutorial/adding.html#adding-two-scalars" target="_blank" rel="external">basic arithmetic ops</a>, <a href="http://deeplearning.net/software/theano/tutorial/examples.html#computing-gradients" target="_blank" rel="external">T.grad</a>, <a href="http://deeplearning.net/software/theano/tutorial/examples.html#using-random-numbers" target="_blank" rel="external">Random numbers</a>, <a href="http://deeplearning.net/software/theano/library/config.html#config.floatX" target="_blank" rel="external">floatX</a>。如果你要在GPU上跑代码，那么也需要阅读<a href="http://deeplearning.net/software/theano/tutorial/using_gpu.html" target="_blank" rel="external">GPU</a>。</p>
-</blockquote>
-<p><strong>注意：</strong></p>
-<blockquote>
-<p>这一节的代码可以在<a href="http://deeplearning.net/tutorial/code/dA.py" target="_blank" rel="external">这里</a>下载。  </p>
-</blockquote>
-<p>降噪自编码机（dA）是经典的自编码机的一个扩展，并且在[Vincent08]中是以深度网络的组成成分来介绍的。</p>
-<h2 id="自编码机"><a href="#自编码机" class="headerlink" title="自编码机"></a>自编码机</h2><p>关于自编码机，我们可以在<a href="http://deeplearning.net/tutorial/references.html#bengio09" target="_blank" rel="external">【bengio09】</a>的4.6节中有一个总的概览。自编码机将\(x\in[0,1]^d\)作为输入，并将输入映射（用一个<strong><em>编码机</em></strong>）到一个隐层的表征向量\(y\in[0,1]^{d’}\)，中间特定的映射法则可以是如下的方式：<br>$$y=s(Wx+b)$$  </p>
-<p>这里的s是一个非线性的函数，例如sigmoid函数。这个隐层的表征向量y或者称为密码，接下来再映射成z（用一个<strong><em>解码机</em></strong>，z也陈给是重构的x），这里的z与原来的输入x是有相同的shape的。这里的映射与之前的映射也有着相似的形式，如下：<br>$$z=s(W’y+b’)$$  </p>
-<p>（这里，W和b右上方的符号并不表示矩阵的转置）z应该看成是，在给定了密码y之后，对x的一个预测。当然，在逆映射中的权重矩阵\(w’\)可以被约束成\(W’= W^{T}\), \(W’\)为前一个映射中的权重矩阵的转置。这样被称为是<strong><em>tied weights</em></strong>。模型的参数（也就是W，b，b’, 当然如果不使用<em>tied weights</em>，还有W’）可以通过最小化平均重构误差来得到。    </p>
-<p>重构误差可以通过很多方式来衡量，取决于对给定了密码的输入的分布的合理假设（？？）。我们可以使用传统的<strong><em>均方误差</em></strong>\(L(xz)=||x-z||^2\) 。当然如果输入被处理成位向量（向量中的值均为0或1）或者概率位向量（向量中的值均为概率值），那么我们也可以用重构误差的<strong><em>交叉熵</em></strong>形式：<br>$$L_{H}=-\sum_{k=1}^{d} [x_{k}log(z_{k}+(1-x_{k})log(1-z_{k})]$$ </p>
-<p>我们的希望是密码y，可以捕捉到数据集中主要因子变化的<strong><em>分布</em></strong>表示。这与在主成分上做投影的方式是十分相似的，会捕捉到数据中主要因子的变化。事实上，如果网络中，我们使用的是一个线性的隐藏层，并且我们将均方误差作为衡量损失的标准来训练这个网络，那么k个隐藏节点将学习反映数据中前k个主成分。如果隐藏层是非线性的，那么自编码机将于PCA表现不同，这样的网络将会学习捕获输入分布的多个方面。正是与PCA的不同，当我们考虑建立一个深度的自编码机的时候，考虑到<strong><em>堆叠多个编码机</em></strong>的时候，这样的不同将会变得非常重要<a href="http://deeplearning.net/tutorial/references.html#hinton06" target="_blank" rel="external">【Hinton06】</a>。  </p>
-<p>因为我们将y看做是x的有损压缩，所以对所有的x不可能都是一个好的压缩（有small-loss）。通过优化的方法，我们可以得到一个对训练样本而言较好的压缩，同时期望对其他的一些输入也是表现良好的，但是并不是对所有的输入都是表现良好的。自编码机概括起来就是：对于测试样本的分布与训练样本分布一样的测试集，自编码机得到一个较小的重构误差，但是对于在输入空间上随意选取的样本，往往有较高的重构误差。  </p>
-<p>我们用Theano框架来实现自编码机，以一个类的形式，这样子我们可以在构建堆叠自编码机的时候也能使用。首先第一步我们要为自编码机的参数W，b，b’,创建共享变量。（在本教程中，我们使用tied weights，也就是\\(W’=W^{T}\)：  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(</span></span></div><div class="line">    self,</div><div class="line">    numpy_rng,</div><div class="line">    theano_rng=None,</div><div class="line">    input=None,</div><div class="line">    n_visible=<span class="number">784</span>, #可视节点数（相对于隐藏节点），也即输入输出的节点数</div><div class="line">    n_hidden=<span class="number">500</span>, #隐藏节点数</div><div class="line">    W=None,</div><div class="line">    bhid=None,</div><div class="line">    bvis=None</div><div class="line">):</div><div class="line">    self.n_visible = n_visible</div><div class="line">    self.n_hidden = n_hidden</div><div class="line"></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> theano_rng:  <span class="comment">#theano_rng == None的时候执行</span></div><div class="line">        theano_rng = RandomStreams(numpy_rng.randint(<span class="number">2</span> ** <span class="number">30</span>))</div><div class="line"></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> W:</div><div class="line">        initial_W = numpy.asarray(</div><div class="line">            numpy_rng.uniform(</div><div class="line">                low=<span class="number">-4</span> * numpy.sqrt(<span class="number">6.</span> / (n_hidden + n_visible)),</div><div class="line">                high=<span class="number">4</span> * numpy.sqrt(<span class="number">6.</span> / (n_hidden + n_visible)),</div><div class="line">                size=(n_visible, n_hidden)</div><div class="line">            ),</div><div class="line">            dtype=theano.config.floatX</div><div class="line">        )</div><div class="line">        W = theano.shared(value=initial_W, name=<span class="string">'W'</span>, borrow=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">    <span class="comment"># b_prime的初始化，初始化为0</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> bvis:</div><div class="line">        bvis = theano.shared(</div><div class="line">            value=numpy.zeros(</div><div class="line">                n_visible,</div><div class="line">                dtype=theano.config.floatX</div><div class="line">            ),</div><div class="line">            borrow=<span class="keyword">True</span></div><div class="line">        )</div><div class="line"></div><div class="line">    <span class="comment"># b的初始化，初始化为0</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> bhid:</div><div class="line">        bhid = theano.shared(</div><div class="line">            value=numpy.zeros(</div><div class="line">                n_hidden,</div><div class="line">                dtype=theano.config.floatX</div><div class="line">            ),</div><div class="line">            name=<span class="string">'b'</span>,</div><div class="line">            borrow=<span class="keyword">True</span></div><div class="line">        )</div><div class="line"></div><div class="line">    self.W = W</div><div class="line">    <span class="comment"># b corresponds to the bias of the hidden</span></div><div class="line">    self.b = bhid</div><div class="line">    <span class="comment"># b_prime corresponds to the bias of the visible</span></div><div class="line">    self.b_prime = bvis</div><div class="line">    <span class="comment"># tied weights, therefore W_prime is W transpose</span></div><div class="line">    <span class="comment"># 这里是以tied weights的形式</span></div><div class="line">    self.W_prime = self.W.T</div><div class="line">    self.theano_rng = theano_rng</div><div class="line"></div><div class="line">    <span class="keyword">if</span> input <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">        self.x = T.dmatrix(name=<span class="string">'input'</span>)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        self.x = input</div><div class="line"></div><div class="line">    <span class="comment"># 整理模型的参数</span></div><div class="line">    self.params = [self.W, self.b, self.b_prime]</div></pre></td></tr></table></figure>
-<p>注意到我们在自编码机的input参数中，以符号的形式作为输入。这样可以使得我们在构建深度网络的时候，可以连接各个层：层k的符号形式的输出将会作为层k+1的符号形式的输入。  </p>
-<p>现在我们展示隐藏表征的计算和重构输入的计算：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_hidden_values</span><span class="params">(self, input)</span>:</span></div><div class="line">    <span class="keyword">return</span> T.nnet.sigmoid(T.dot(input, self.W) + self.b)</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_reconstructed_input</span><span class="params">(self, hidden)</span>:</span></div><div class="line">    <span class="keyword">return</span> T.nnet.sigmoid(T.dot(hidden, self.W_prime) + self.b_prime)</div></pre></td></tr></table></figure></p>
-<p>使用上述的函数，我们就可以计算损失，并且得到随机梯度下降的更新步骤：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_cost_updates</span><span class="params">(self, corruption_level, learning_rate)</span>:</span></div><div class="line">    tilde_x = self.get_corrupted_input(self.x, corruption_level)</div><div class="line">    y = self.get_hidden_values(tilde_x)</div><div class="line">    z = self.get_reconstructed_input(y)</div><div class="line"></div><div class="line">    L = - T.sum(self.x * T.log(z) + (<span class="number">1</span> - self.x) * T.log(<span class="number">1</span> - z), axis=<span class="number">1</span>)</div><div class="line"></div><div class="line">    cost = T.mean(L)</div><div class="line"></div><div class="line">    gparams = T.grad(cost, self.params)</div><div class="line"></div><div class="line">    updates = [</div><div class="line">        (param, param - learning_rate * gparam)</div><div class="line">        <span class="keyword">for</span> param, gparam <span class="keyword">in</span> zip(self.params, gparams)</div><div class="line">    ]</div><div class="line"></div><div class="line">    <span class="keyword">return</span> (cost, updates)</div></pre></td></tr></table></figure></p>
-<p>我们可以定义一个函数，这个函数可以迭代地更新参数W，b和b_prime，这样我们得到的重构误差可以近似取得最小。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div></pre></td><td class="code"><pre><div class="line">da = dA(</div><div class="line">        numpy_rng=rng,</div><div class="line">        theano_rng=theano_rng,</div><div class="line">        input=x,</div><div class="line">        n_visible=<span class="number">28</span> * <span class="number">28</span>,</div><div class="line">        n_hidden=<span class="number">500</span></div><div class="line">    )</div><div class="line"></div><div class="line">    cost, updates = da.get_cost_updates(</div><div class="line">        corruption_level=<span class="number">0.</span>,</div><div class="line">        learning_rate=learning_rate</div><div class="line">    )</div><div class="line"></div><div class="line">    train_da = theano.function(</div><div class="line">        [index],</div><div class="line">        cost,</div><div class="line">        updates=updates,</div><div class="line">        givens=&#123;</div><div class="line">            x: train_set_x[index * batch_size: (index + <span class="number">1</span>) * batch_size]</div><div class="line">        &#125;</div><div class="line">    )</div><div class="line"></div><div class="line">    start_time = timeit.default_timer()</div><div class="line"></div><div class="line">    <span class="comment">############</span></div><div class="line">    <span class="comment"># TRAINING #</span></div><div class="line">    <span class="comment">############</span></div><div class="line"></div><div class="line">    <span class="comment"># go through training epochs</span></div><div class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(training_epochs):</div><div class="line">        <span class="comment"># go through trainng set</span></div><div class="line">        c = []</div><div class="line">        <span class="keyword">for</span> batch_index <span class="keyword">in</span> range(n_train_batches):</div><div class="line">            c.append(train_da(batch_index))</div><div class="line"></div><div class="line">        print(<span class="string">'Training epoch %d, cost '</span> % epoch, numpy.mean(c, dtype=<span class="string">'float64'</span>))</div><div class="line"></div><div class="line">    end_time = timeit.default_timer()</div><div class="line"></div><div class="line">    training_time = (end_time - start_time)</div><div class="line"></div><div class="line">    print((<span class="string">'The no corruption code for file '</span> +</div><div class="line">           os.path.split(__file__)[<span class="number">1</span>] +</div><div class="line">           <span class="string">' ran for %.2fm'</span> % ((training_time) / <span class="number">60.</span>)), file=sys.stderr)</div><div class="line">    image = Image.fromarray(</div><div class="line">        tile_raster_images(X=da.W.get_value(borrow=<span class="keyword">True</span>).T,</div><div class="line">                           img_shape=(<span class="number">28</span>, <span class="number">28</span>), tile_shape=(<span class="number">10</span>, <span class="number">10</span>),</div><div class="line">                           tile_spacing=(<span class="number">1</span>, <span class="number">1</span>)))</div><div class="line">    image.save(<span class="string">'filters_corruption_0.png'</span>)</div><div class="line"></div><div class="line">    <span class="comment"># start-snippet-3</span></div><div class="line">    <span class="comment">#####################################</span></div><div class="line">    <span class="comment"># BUILDING THE MODEL CORRUPTION 30% #</span></div><div class="line">    <span class="comment">#####################################</span></div><div class="line"></div><div class="line">    rng = numpy.random.RandomState(<span class="number">123</span>)</div><div class="line">    theano_rng = RandomStreams(rng.randint(<span class="number">2</span> ** <span class="number">30</span>))</div><div class="line"></div><div class="line">    da = dA(</div><div class="line">        numpy_rng=rng,</div><div class="line">        theano_rng=theano_rng,</div><div class="line">        input=x,</div><div class="line">        n_visible=<span class="number">28</span> * <span class="number">28</span>,</div><div class="line">        n_hidden=<span class="number">500</span></div><div class="line">    )</div><div class="line"></div><div class="line">    cost, updates = da.get_cost_updates(</div><div class="line">        corruption_level=<span class="number">0.3</span>,</div><div class="line">        learning_rate=learning_rate</div><div class="line">    )</div><div class="line"></div><div class="line">    train_da = theano.function(</div><div class="line">        [index],</div><div class="line">        cost,</div><div class="line">        updates=updates,</div><div class="line">        givens=&#123;</div><div class="line">            x: train_set_x[index * batch_size: (index + <span class="number">1</span>) * batch_size]</div><div class="line">        &#125;</div><div class="line">    )</div><div class="line"></div><div class="line">    start_time = timeit.default_timer()</div><div class="line"></div><div class="line">    <span class="comment">############</span></div><div class="line">    <span class="comment"># TRAINING #</span></div><div class="line">    <span class="comment">############</span></div><div class="line"></div><div class="line">    <span class="comment"># go through training epochs</span></div><div class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(training_epochs):</div><div class="line">        <span class="comment"># go through trainng set</span></div><div class="line">        c = []</div><div class="line">        <span class="keyword">for</span> batch_index <span class="keyword">in</span> range(n_train_batches):</div><div class="line">            c.append(train_da(batch_index))</div><div class="line"></div><div class="line">        print(<span class="string">'Training epoch %d, cost '</span> % epoch, numpy.mean(c, dtype=<span class="string">'float64'</span>))</div><div class="line"></div><div class="line">    end_time = timeit.default_timer()</div><div class="line"></div><div class="line">    training_time = (end_time - start_time)</div><div class="line"></div><div class="line">    print((<span class="string">'The 30% corruption code for file '</span> +</div><div class="line">           os.path.split(__file__)[<span class="number">1</span>] +</div><div class="line">           <span class="string">' ran for %.2fm'</span> % (training_time / <span class="number">60.</span>)), file=sys.stderr)</div><div class="line">    <span class="comment"># end-snippet-3</span></div><div class="line"></div><div class="line">    <span class="comment"># start-snippet-4</span></div><div class="line">    image = Image.fromarray(tile_raster_images(</div><div class="line">        X=da.W.get_value(borrow=<span class="keyword">True</span>).T,</div><div class="line">        img_shape=(<span class="number">28</span>, <span class="number">28</span>), tile_shape=(<span class="number">10</span>, <span class="number">10</span>),</div><div class="line">        tile_spacing=(<span class="number">1</span>, <span class="number">1</span>)))</div><div class="line">    image.save(<span class="string">'filters_corruption_30.png'</span>)</div><div class="line">    <span class="comment"># end-snippet-4</span></div><div class="line"></div><div class="line">    os.chdir(<span class="string">'../'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">test_dA()</div></pre></td></tr></table></figure></p>
-<p>如果我们对最小化重构误差没有额外的约束，那么我们可能会希望我们的自编码机有n个输入，同时编码成n维（或者更大），以便学习到一个恒等函数，仅仅只是对输入做了一个拷贝。这样的一个自编码机是不能对来自不同输入分布的测试样本做任何区别的。</p>
-<p>出人意料的是，在<a href="http://deeplearning.net/tutorial/references.html#bengio07" target="_blank" rel="external">【Bengio07】</a>的实验中表明，在实践中，当我们使用SGD、非线性的自编码机的时候，当将隐层节点的数量设置的比输入节点的数量多时，将会产生一些有用的表征（这里的有用，指的是网络将编码作为输入的时候，有较低的分类误差）。#这里表明我们需要将网络的隐藏节点设置的较多，并且采用非线性的网络结构的形式。</p>
-<p>一个较为简单的解释是，随机梯度下降结合急躁停止策略等价于L2正则化。为了实现一个较好的对连续输入的重构，非线性的只有一个隐藏层的自编码机（就像上面的代码描述的那样），在第一层（编码层）的权重需要小一点，这样可以将隐藏节点的约束在线性区域，在第二层（解码层）的权重要较大。对于二进制的输入，在最小化重构误差的时候，也需要得到一个较大的权重。但是由于一些隐式的或是显示的正则化，使得我们很难得到一个大权重的解，最优化算法发现，编码只对于训练样本相似的样本表现的好，这正是我们想要的。这意味着representation提取的是在<strong><em>训练集中呈现的统计规则</em></strong>，而不是仅仅对输入进行复制。</p>
-<p>自编码机隐藏层节点比输入节点多，也有其他的方式可以阻止学习恒等函数，并且在隐藏层的表示中捕获输入的有用信息。一种方式就是增加稀疏性（强制设置一些隐藏节点的值为0或者接近于0）。<strong><em>稀疏性</em></strong>在<a href="http://deeplearning.net/tutorial/references.html#ranzato07" target="_blank" rel="external">Ranzato07</a><a href="http://deeplearning.net/tutorial/references.html#lee08" target="_blank" rel="external">Lee08</a>中已经被成功的采用。另外一种方法是在输入到输出的转化中增加一些随机性。这种技术在RBM（<a href="http://deeplearning.net/tutorial/rbm.html#rbm" target="_blank" rel="external">受限的玻尔兹曼机</a>）中用到，在去噪自编码机中也用到，去噪自编码机将会在下面进行讨论。</p>
-<h2 id="去噪自编码机"><a href="#去噪自编码机" class="headerlink" title="去噪自编码机"></a>去噪自编码机</h2><p>去噪自编码机背后的思想其实是非常简单的。为了使得隐藏层能够得到更鲁棒的特征并且防止它学习恒等函数，我们将会让自编码机<strong><em>从受损的输入来重构输入</em></strong>。</p>
-<p>去噪自编码机是自编码机的随机版本。直觉上来说，一个去噪自编码机做了两件事：1.对输入进行编码（保留输入中蕴含的信息）2.让自编码机中输入随机受损的影响尽可能的降低。第二个只能通过捕获输入数据中的统计性依赖来完成。去噪自编码机也可以从不同的角度来理解（从流形学习的角度，随机操作的角度，信息自底向上流动的理论角度，自上而下的生成模型的角度），这些都在<a href="http://deeplearning.net/tutorial/references.html#vincent08" target="_blank" rel="external">【Vincent08】</a>中加以解释了。也可以在<a href="http://deeplearning.net/tutorial/references.html#bengio09" target="_blank" rel="external">【Bengio09】</a>的7.2节中查看自编码机的综述。<br>在<a href="http://deeplearning.net/tutorial/references.html#vincent08" target="_blank" rel="external">【Vincent08】</a>中，随机地破坏输入数据的方式是，随机地将一些输入设置为0（几乎将近一半的数据）。因此，去噪自编码机是从不受损（比如：未遗失的）的数据中来预测受损（比如：遗失的）的数据，对于随机选的子集作为受损的数据。注意到，如何能够从剩余的未受损的数据中预测任意变量子集，对捕获一个变量集之间的联合分布是一个充分条件（这也是吉布斯采样的工作原理）。</p>
-<p>为了将自编码机类转换成去噪自编码机类，我们只要对输入增加一个随机受损的操作。输入可以通过很多方式来达到受损的目的，但是在本教程中，我们仍然坚持最原始的受损机制，随机地将输入中的一些值设置为0。代码如下所示：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_corrupted_input</span><span class="params">(self, input, corruption_level)</span>:</span></div><div class="line">    <span class="keyword">return</span> self.theano_rng.binomial(size=input.shape, n=<span class="number">1</span>,</div><div class="line">                                    p=<span class="number">1</span> - corruption_level,</div><div class="line">                                    dtype=theano.config.floatX) * input</div></pre></td></tr></table></figure></p>
-<p>在堆叠自编码机类中，<code>dA</code>类的权重参数必须与相应的sigmoid层共享（？？）。因为这个原因，dA类的构造函数也会将Theano变量设置为共享变量。如果这些参数是<code>None</code>类型，那么将会重新构造一个新的类型。<br>最终的去噪自编码机类如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">dA</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(</span></span></div><div class="line">        self,</div><div class="line">        numpy_rng,</div><div class="line">        theano_rng=None,</div><div class="line">        input=None,</div><div class="line">        n_visible=<span class="number">784</span>, #可视节点数（相对于隐藏节点），也即输入输出的节点数</div><div class="line">        n_hidden=<span class="number">500</span>, #隐藏节点数</div><div class="line">        W=None,</div><div class="line">        bhid=None,</div><div class="line">        bvis=None</div><div class="line">    ):</div><div class="line">        self.n_visible = n_visible</div><div class="line">        self.n_hidden = n_hidden</div><div class="line"></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> theano_rng:  <span class="comment">#theano_rng == None的时候执行</span></div><div class="line">            theano_rng = RandomStreams(numpy_rng.randint(<span class="number">2</span> ** <span class="number">30</span>))</div><div class="line"></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> W:</div><div class="line">            initial_W = numpy.asarray(</div><div class="line">                numpy_rng.uniform(</div><div class="line">                    low=<span class="number">-4</span> * numpy.sqrt(<span class="number">6.</span> / (n_hidden + n_visible)),</div><div class="line">                    high=<span class="number">4</span> * numpy.sqrt(<span class="number">6.</span> / (n_hidden + n_visible)),</div><div class="line">                    size=(n_visible, n_hidden)</div><div class="line">                ),</div><div class="line">                dtype=theano.config.floatX</div><div class="line">            )</div><div class="line">            W = theano.shared(value=initial_W, name=<span class="string">'W'</span>, borrow=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">        <span class="comment"># b_prime的初始化，初始化为0</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> bvis:</div><div class="line">            bvis = theano.shared(</div><div class="line">                value=numpy.zeros(</div><div class="line">                    n_visible,</div><div class="line">                    dtype=theano.config.floatX</div><div class="line">                ),</div><div class="line">                borrow=<span class="keyword">True</span></div><div class="line">            )</div><div class="line"></div><div class="line">        <span class="comment"># b的初始化，初始化为0</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> bhid:</div><div class="line">            bhid = theano.shared(</div><div class="line">                value=numpy.zeros(</div><div class="line">                    n_hidden,</div><div class="line">                    dtype=theano.config.floatX</div><div class="line">                ),</div><div class="line">                name=<span class="string">'b'</span>,</div><div class="line">                borrow=<span class="keyword">True</span></div><div class="line">            )</div><div class="line"></div><div class="line">        self.W = W</div><div class="line">        <span class="comment"># b corresponds to the bias of the hidden</span></div><div class="line">        self.b = bhid</div><div class="line">        <span class="comment"># b_prime corresponds to the bias of the visible</span></div><div class="line">        self.b_prime = bvis</div><div class="line">        <span class="comment"># tied weights, therefore W_prime is W transpose</span></div><div class="line">        <span class="comment"># 这里是以tied weights的形式</span></div><div class="line">        self.W_prime = self.W.T</div><div class="line">        self.theano_rng = theano_rng</div><div class="line"></div><div class="line">        <span class="keyword">if</span> input <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            self.x = T.dmatrix(name=<span class="string">'input'</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            self.x = input</div><div class="line"></div><div class="line">        <span class="comment"># 整理模型的参数</span></div><div class="line">        self.params = [self.W, self.b, self.b_prime]</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_corrupted_input</span><span class="params">(self, input, corruption_level)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.theano_rng.binomial(size=input.shape, n=<span class="number">1</span>,</div><div class="line">                                        p=<span class="number">1</span> - corruption_level,</div><div class="line">                                        dtype=theano.config.floatX) * input</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_hidden_values</span><span class="params">(self, input)</span>:</span></div><div class="line">        <span class="keyword">return</span> T.nnet.sigmoid(T.dot(input, self.W) + self.b)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_reconstructed_input</span><span class="params">(self, hidden)</span>:</span></div><div class="line">        <span class="keyword">return</span> T.nnet.sigmoid(T.dot(hidden, self.W_prime) + self.b_prime)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_cost_updates</span><span class="params">(self, corruption_level, learning_rate)</span>:</span></div><div class="line">        tilde_x = self.get_corrupted_input(self.x, corruption_level)</div><div class="line">        y = self.get_hidden_values(tilde_x)</div><div class="line">        z = self.get_reconstructed_input(y)</div><div class="line"></div><div class="line">        L = - T.sum(self.x * T.log(z) + (<span class="number">1</span> - self.x) * T.log(<span class="number">1</span> - z), axis=<span class="number">1</span>)</div><div class="line"></div><div class="line">        cost = T.mean(L)</div><div class="line"></div><div class="line">        gparams = T.grad(cost, self.params)</div><div class="line"></div><div class="line">        updates = [</div><div class="line">            (param, param - learning_rate * gparam)</div><div class="line">            <span class="keyword">for</span> param, gparam <span class="keyword">in</span> zip(self.params, gparams)</div><div class="line">        ]</div><div class="line"></div><div class="line">        <span class="keyword">return</span> (cost, updates)</div></pre></td></tr></table></figure></p>
-<h2 id="Putting-it-All-Together"><a href="#Putting-it-All-Together" class="headerlink" title="Putting it All Together"></a>Putting it All Together</h2><p>现在很容易构建一个<code>dA</code>类的实例并训练它。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># allocate symbolic variables for the data</span></div><div class="line">index = T.lscalar()    <span class="comment"># index to a [mini]batch</span></div><div class="line">x = T.matrix(<span class="string">'x'</span>)  <span class="comment"># the data is presented as rasterized images</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#####################################</span></div><div class="line"><span class="comment"># BUILDING THE MODEL CORRUPTION 30% #</span></div><div class="line"><span class="comment">#####################################</span></div><div class="line"></div><div class="line">rng = numpy.random.RandomState(<span class="number">123</span>)</div><div class="line">theano_rng = RandomStreams(rng.randint(<span class="number">2</span> ** <span class="number">30</span>))</div><div class="line"></div><div class="line">da = dA(</div><div class="line">    numpy_rng=rng,</div><div class="line">    theano_rng=theano_rng,</div><div class="line">    input=x,</div><div class="line">    n_visible=<span class="number">28</span> * <span class="number">28</span>,</div><div class="line">    n_hidden=<span class="number">500</span></div><div class="line">)</div><div class="line"></div><div class="line">cost, updates = da.get_cost_updates(</div><div class="line">    corruption_level=<span class="number">0.3</span>,</div><div class="line">    learning_rate=learning_rate</div><div class="line">)</div><div class="line"></div><div class="line">train_da = theano.function(</div><div class="line">    [index],</div><div class="line">    cost,</div><div class="line">    updates=updates,</div><div class="line">    givens=&#123;</div><div class="line">        x: train_set_x[index * batch_size: (index + <span class="number">1</span>) * batch_size]</div><div class="line">    &#125;</div><div class="line">)</div><div class="line"></div><div class="line">start_time = timeit.default_timer()</div><div class="line"></div><div class="line"><span class="comment">############</span></div><div class="line"><span class="comment"># TRAINING #</span></div><div class="line"><span class="comment">############</span></div><div class="line"></div><div class="line"><span class="comment"># go through training epochs</span></div><div class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(training_epochs):</div><div class="line">    <span class="comment"># go through trainng set</span></div><div class="line">    c = []</div><div class="line">    <span class="keyword">for</span> batch_index <span class="keyword">in</span> range(n_train_batches):</div><div class="line">        c.append(train_da(batch_index))</div><div class="line"></div><div class="line">    print(<span class="string">'Training epoch %d, cost '</span> % epoch, numpy.mean(c, dtype=<span class="string">'float64'</span>))</div><div class="line"></div><div class="line">end_time = timeit.default_timer()</div><div class="line"></div><div class="line">training_time = (end_time - start_time)</div><div class="line"></div><div class="line">print((<span class="string">'The 30% corruption code for file '</span> +</div><div class="line">       os.path.split(__file__)[<span class="number">1</span>] +</div><div class="line">       <span class="string">' ran for %.2fm'</span> % (training_time / <span class="number">60.</span>)), file=sys.stderr)</div></pre></td></tr></table></figure>
-<p>为了能够更好地感受网络学习到什么，我们将会绘制filter（权重矩阵）。记住，这个filter并不是全部，因为我们忽略了截距项，并且绘制的权重是经过与常数相乘后的（将权重转化到0-1之间）。  </p>
-<p>为了绘制filter我们需要借助<code>tile_raster_images</code>函数（<a href="http://deeplearning.net/tutorial/utilities.html#how-to-plot" target="_blank" rel="external">Plotting Samples and Filters</a>），我们希望读者能够学习相关内容。我们还需要使用Python的Image包，下面的几行代码是用来保存filter的图片的：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">image = Image.fromarray(tile_raster_images(</div><div class="line">    X=da.W.get_value(borrow=<span class="keyword">True</span>).T,</div><div class="line">    img_shape=(<span class="number">28</span>, <span class="number">28</span>), tile_shape=(<span class="number">10</span>, <span class="number">10</span>),</div><div class="line">    tile_spacing=(<span class="number">1</span>, <span class="number">1</span>)))</div><div class="line">image.save(<span class="string">'filters_corruption_30.png'</span>)</div></pre></td></tr></table></figure></p>
-<h2 id="Running-the-Code"><a href="#Running-the-Code" class="headerlink" title="Running the Code"></a>Running the Code</h2><p>运行代码：<br><code>Python dA.py</code>  </p>
-<p>没有加任何噪声的filter如下所示：<br><img src="http://oczef8awa.bkt.clouddn.com/filters_corruption_0.png" alt="没有噪声时的filter"></p>
-<p>加了30%噪声的filter如下所示：<br><img src="http://oczef8awa.bkt.clouddn.com/filters_corruption_30.png" alt="30%噪声的filter"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Theano</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">翻译</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/21/自编码机（dA）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/21/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/21/hello-world/" class="archive-article-date">
-  	<time datetime="2017-02-21T06:33:02.908Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oczef8awa.bkt.clouddn.com/zhifubao_pay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oczef8awa.bkt.clouddn.com/weixin_pay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -390,18 +261,74 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/21/hello-world/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/03/堆叠自编码机（SdA）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/02/21/自编码机（dA）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">去噪自编码机（dA）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
@@ -409,7 +336,10 @@
 
 
   
+    <div class="duoshuo"></div>
   
+
+
 
 
           </div>
@@ -431,8 +361,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
